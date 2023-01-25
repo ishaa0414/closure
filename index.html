@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure</title>
+</head>
+<body>
+    <h1><u>Closure</u></h1>
+   <h2> <pre>function counter(){
+        var counter = 0;
+            
+        function IncreaseCounter() {
+            return counter += 1;
+        };
+            
+        return IncreaseCounter;
+        }
+            
+        var counter = counter();
+        console.log(counter());
+        console.log(counter());
+        console.log(counter());
+        console.log(counter());</pre></h2>
+        
+    Output:<br>
+    1<br>
+    2<br>
+    3<br>
+    4<br>
+    
+    The variable counter value increases by 1 in every run.
+    <hr>
+    <h2><pre> let count = 0;
+        (function () {
+            if (count === 0) {
+                let count = 1;
+                console.log(count); // What is logged?
+            }
+            console.log(count); // What is logged?
+        })();</pre></h2>
+        Output:<br>
+        1<br>0
+since count inside function has block scope and so it displays 1 ,whereas, the last console will access the value of the global variable i.e,0.
+<hr>
+<h2><pre>for (var i = 0; i < 3; i++)
+    {
+        setTimeout(function log() {
+            console.log(i); // What is logged?
+        }, 1000);
+    }</pre></h2>
+    Output:<br>
+    3<br>3<br>3<br>
+The setTimeout function will delay the output of 3 by one second every time.
+<hr>
+<h2>Write a code to calculate area of a rectangle using inner function. In this case outer function should accept parameter length and inner function should accept parameter breadth.</h2>
+<pre>
+    function len(length)
+{
+    function bth(breadth)
+    {
+        let area = length * breadth;
+        console.log("The area of the rectangle is = " + area);
+    }
+    bth(60);
+}
+len(20);
+</pre>
+Output:<br>The area of the rectangle is = 1200.
+<hr>
+<h2>Take a variable in outer function and create an inner function to increase the counter every time it is called</h2>
+<pre>
+    function outer(number){
+        function inner(){
+            number+=1;
+            console.log(number);
+        }
+        inner(number);
+        inner(number);
+        inner(number);
+    }
+    outer(13);
+</pre>
+Output:<br>
+14<br>
+15<br>
+16<br>
+<hr>
+<h2><pre>Print Output
+
+    var a = 12;
+    (function () {
+      console.log(a);
+    })();
+       </pre></h2>
+       Output:<br>12<br>
+       a is a global variable and so the function can access the value of a and prints 12.
+<hr>
+<h2><pre>Print The Output
+ 
+    var a = 10;
+    var x = (function ()
+       {
+           var a = 12;
+           return function ()
+           {
+               console.log(a);
+           };
+       })();
+    x();</pre></h2>
+    Output:<br>
+    12<br>
+    a will access the value from var in functional scope.
+    <hr>
+    <h2><pre> Print the output
+
+        var globalVar = "xyz";
+        
+        (function outerFunc(outerArg)
+        {
+            var outerVar = 'a';
+             
+            (function innerFunc(innerArg)
+            {
+                var innerVar = 'b';
+                console.log( "outerArg = " + outerArg + "\n" + "innerArg = " + innerArg + "\n" +
+                 "outerVar = " + outerVar + "\n" + "innerVar = " + innerVar + "\n" +
+                 "globalVar = " + globalVar);
+            })(456);
+         })
+        (123);</pre></h2>
+        Output:<br>
+        outerArg = 123<br>
+innerArg = 456<br>
+outerVar = a <br>
+innerVar = b <br>
+globalVar = xyz<br>
+<hr>
+    
+</body>
+</html>
